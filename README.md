@@ -1,8 +1,17 @@
 # Monolog Zend Framework 2 Wrapper
 
+[![Build Status](https://travis-ci.org/ebittleman/monolog-zf2.svg?branch=master)](https://travis-ci.org/ebittleman/monolog-zf2)
+
+This project is a basic wrapper for the Monolog logger check it out for all the
+bells and whistles [here](https://github.com/Seldaek/monolog).
+
 ## Config Example
+
 The following configuration will make 2 different loggers available from the 
-service manager where the service name is the array key.
+service manager where the service name is the array key. Each logger is 
+configured with a list of handlers, each of which has a `handlerClass` and 
+`args` that will be passed to the handler's constructor. This example can be 
+found in <MonlogZf2VendorPath>/config/monolog.global.dist
 
     <?php
     use Monolog\Logger;
