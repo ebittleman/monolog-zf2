@@ -1,0 +1,29 @@
+{
+    "name": "ebittleman/monolog-zf2",
+    "description": "Monolog wrapper for zf2",
+    "type": "library",
+    "license": "The MIT License (MIT)",
+    "keywords": ["zf2", "zendframework", "monolog"],
+    "authors": [
+        {
+            "name": "Eric Bittleman",
+            "email": "eric.bittleman@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload" : {
+        "psr-4": {
+            "MonologZf2\\": "src/"
+        }
+    },
+    "require": {
+        "monolog/monolog": "^1.13",
+        "zendframework/zendframework": "~2.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.6"
+    },
+    "scripts" : {
+        "test" : "php vendor/phpunit/phpunit/phpunit -c test/phpunit.xml"
+    }
+}
