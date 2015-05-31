@@ -1,5 +1,6 @@
 {
     "name": "ebittleman/monolog-zf2",
+    "version": "1.0.0",
     "description": "Monolog wrapper for zf2",
     "type": "library",
     "license": "The MIT License (MIT)",
