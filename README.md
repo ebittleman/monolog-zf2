@@ -5,6 +5,32 @@
 This project is a basic wrapper for the Monolog logger check it out for all the
 bells and whistles [here](https://github.com/Seldaek/monolog).
 
+## Installation
+
+
+### Install the Package
+
+    composer require ebittleman/monolog-zf2
+    
+### Enable Zf2 Module
+
+Update your application config to include the module.
+
+    return array(
+        'modules' => array(
+            ...YOUR MODULES...,
+            'MonologZf2'
+        ),
+        'module_listener_options' => array(
+            'config_glob_paths' => array(
+                ...YOUR CONFIG PATHS...
+            ),
+            'module_paths' => array(
+                ...YOUR MODULES PATHS...
+            )
+        )
+    );
+
 ## Config Example
 
 The following configuration will make 2 different loggers available from the 
