@@ -1,6 +1,6 @@
 # Monolog Zend Framework 2 Wrapper
 
-[![Build Status](https://travis-ci.org/ebittleman/monolog-zf2.svg?branch=master)](https://travis-ci.org/ebittleman/monolog-zf2)
+[![Build Status](https://travis-ci.org/ebittleman/monolog-zf2.svg?branch=master)](https://travis-ci.org/ebittleman/monolog-zf2) [![Packagist](https://img.shields.io/packagist/v/ebittleman/monolog-zf2.svg)](https://packagist.org/packages/ebittleman/monolog-zf2)
 
 This project is a basic wrapper for the Monolog logger check it out for all the
 bells and whistles [here](https://github.com/Seldaek/monolog).
