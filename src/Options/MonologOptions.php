@@ -26,22 +26,7 @@ class MonologOptions implements FactoryInterface
             $options['defaultLogger'] :
             'Monolog';
 
-        $loggers = isset($options['logs'])? $options['logs'] : array();
-
-        foreach ($loggers as $serviceName => $logOptions)
-        {
-            $handlers = array();
-
-            if (! empty($logOptions['handlers'])) {
-                foreach($logOptions['handlers'] as $handlerOptions) {
-                    $handlers[] = new MonologHandlerOptions($handlerOptions);
-                }
-            }
-
-            $logOptions['handlers'] = $handlers;
-
-            $this->loggers[$serviceName] = new MonologLoggerOptions($logOptions);
-        }
+        $this->loggers = isset($options['logs'])? $options['logs'] : array();
     }
 
     public function getDefaultLogger(){
@@ -61,7 +46,24 @@ class MonologOptions implements FactoryInterface
             return null;
         }
 
-        return $this->loggers[$name];
+        $loggerOptions = $this->loggers[$name];
+
+        if (
+            $loggerOptions instanceof MonologLoggerOptions ||
+            is_string($loggerOptions)
+        ) {
+            return $loggerOptions;
+        }
+
+        if (! isset($loggerOptions['name'])) {
+            $loggerOptions['name'] = $name;
+        }
+
+        $loggerOptions = new MonologLoggerOptions($loggerOptions);
+
+        $this->loggers[$name] = $loggerOptions;
+
+        return $loggerOptions;
     }
 
     public function createService(ServiceLocatorInterface $serviceLocator)

@@ -5,13 +5,21 @@ use Monolog\Handler\ErrorLogHandler;
 return array(
     'monolog' => array(
         'defaultLogger' => 'Monolog\Log',
+        'manager' => array(
+            'factories' => array(),
+            'initializers' => array(),
+            'abstract_factories' => array(),
+            'invokables' => array(),
+            'loggers' => array(),
+            'handlers' => array()
+        ),
         'logs' => array(
             'Monolog\Log' => array(
                 'handlers' => array(
                     array(
                         'handlerClass' => 'Monolog\Handler\StreamHandler',
                         'args' => array(
-                            [PATH TO LOG FILE],
+//                             [PATH TO LOG FILE],
                             Logger::DEBUG
                         )
                     ),
@@ -30,6 +38,12 @@ return array(
                         'handlerClass' => 'Monolog\Handler\ErrorLogHandler',
                     )
                 )
+            )
+        ),
+        'handlers' => array(
+            'Monolog\DefaultHandler' => array(
+                'handlerClass' => '',
+                'args' => array(),
             )
         ),
     )

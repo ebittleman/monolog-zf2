@@ -13,6 +13,8 @@ class MonologInitializer implements InitializerInterface
             return;
         }
 
+        $logManager = $serviceLocator->get('MonologZf2\Manager\LoggerManager');
+
         $options = $serviceLocator->get('MonologZf2\Options\MonologOptions');
         $loggerName = $options->getDefaultLogger();
 
@@ -22,7 +24,7 @@ class MonologInitializer implements InitializerInterface
             $loggerName = $instance::LOGGER;
         }
 
-        $logger = $serviceLocator->get($loggerName);
+        $logger = $logManager->get($loggerName);
 
         $instance->setLogger($logger);
     }

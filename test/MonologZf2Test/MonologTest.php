@@ -3,21 +3,47 @@ namespace MonologZfTest;
 
 use MailgunZf2Test\UnitTest;
 use Monolog\Handler\TestHandler;
+use Monolog\Logger;
+use Monolog\Handler\ErrorLogHandler;
 
 class MonologTest extends UnitTest
 {
+    /**
+     *
+     * @var Logger
+     */
+    private $log;
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->log = $this->sm->get('Monolog\Log');
+    }
     public function testLogGet()
     {
-        $log = $this->sm->get('Monolog\Log');
-
-        $this->assertInstanceOf('Monolog\Logger', $log);
+        $this->assertInstanceOf('Monolog\Logger', $this->log);
     }
 
+    public function testErrorLogHandlerAssertions()
+    {
+        $handlers = $this->log->getHandlers();
+
+        $hasErrorHandler = false;
+
+        foreach ($handlers as $handler) {
+            if (! $handler instanceof ErrorLogHandler) {
+                continue;
+            }
+            $hasErrorHandler = true;
+            $this->assertEquals(Logger::ERROR, $handler->getLevel());
+        }
+
+        $this->assertTrue($hasErrorHandler);
+    }
 
     public function testLogWrite()
     {
         $handler = new TestHandler;
-        $log = $this->sm->get('Monolog\Log');
+        $log = $this->log;
 
         $log->pushHandler($handler);
 
