@@ -104,9 +104,9 @@ un-comment the LOGGER constant of the service.
     use Psr\Log\LoggerAwareInterface;
     use Psr\Log\LoggerAwareTrait;
     
-    class ExampleService implements LogAwareInterface
+    class ExampleService implements LoggerAwareInterface
     {
-        use LogAwareTrait;
+        use LoggerAwareTrait;
     
         // const LOGGER = 'Someother\Log';
     
