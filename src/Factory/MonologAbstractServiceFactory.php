@@ -1,14 +1,7 @@
 <?php
 namespace MonologZf2\Factory;
 
-use ReflectionClass;
-
-use Monolog\Logger;
 use MonologZf2\Manager\LoggerManager;
-use MonologZf2\Options\MonologOptions;
-use MonologZf2\Options\MonologLoggerOptions;
-use MonologZf2\Options\MonologHandlerOptions;
-
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -24,7 +17,7 @@ class MonologAbstractServiceFactory implements AbstractFactoryInterface
         ServiceLocatorInterface $serviceLocator,
         $name,
         $requestedName
-    ){
+    ) {
         $this->manager = $serviceLocator->get('MonologZf2\Manager\LoggerManager');
 
         return $this->manager->has($requestedName);
@@ -42,7 +35,7 @@ class MonologAbstractServiceFactory implements AbstractFactoryInterface
         ServiceLocatorInterface $serviceLocator,
         $name,
         $requestedName
-    ){
+    ) {
         $this->manager = $serviceLocator->get('MonologZf2\Manager\LoggerManager');
 
         return $this->manager->get($requestedName);

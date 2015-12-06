@@ -17,19 +17,23 @@ class MonologHandlerOptions extends AbstractOptions
      */
     private $args = array();
 
-    public function getHandlerClass(){
+    public function getHandlerClass()
+    {
         return $this->handlerClass;
     }
 
-    public function setHandlerClass($handlerClass){
+    public function setHandlerClass($handlerClass)
+    {
         $this->handlerClass = $handlerClass;
     }
 
-    public function getArgs(){
+    public function getArgs()
+    {
         return $this->args;
     }
 
-    public function setArgs($args){
+    public function setArgs($args)
+    {
         $this->args = $args;
     }
 }
