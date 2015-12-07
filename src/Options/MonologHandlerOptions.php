@@ -6,16 +6,19 @@ use Zend\Stdlib\AbstractOptions;
 class MonologHandlerOptions extends AbstractOptions
 {
     /**
-     *
      * @var string
      */
     private $handlerClass;
 
     /**
-     *
      * @var array
      */
     private $args = array();
+
+    /**
+     * @var MonologFormatterOptions
+     */
+    private $formatter;
 
     public function getHandlerClass()
     {
@@ -35,5 +38,17 @@ class MonologHandlerOptions extends AbstractOptions
     public function setArgs($args)
     {
         $this->args = $args;
+    }
+
+    public function getFormatter()
+    {
+        return $this->formatter;
+    }
+
+    public function setFormatter($formatter)
+    {
+        if (!empty($formatter) && is_array($formatter)) {
+            $this->formatter = new MonologFormatterOptions($formatter);
+        }
     }
 }
