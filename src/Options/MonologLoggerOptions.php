@@ -17,10 +17,11 @@ class MonologLoggerOptions extends AbstractOptions
      */
     private $handlers = array();
 
-    public function __construct($options = null) {
-       parent::__construct($options);
+    public function __construct($options = null)
+    {
+        parent::__construct($options);
 
-       foreach($this->handlers as $index => $handlerOptions){
+        foreach ($this->handlers as $index => $handlerOptions) {
             if (is_string($handlerOptions)) {
                 continue;
             }
@@ -30,9 +31,8 @@ class MonologLoggerOptions extends AbstractOptions
             }
 
             $this->handlers[$index] = new MonologHandlerOptions($handlerOptions);
-       }
+        }
     }
-
 
     public function getName()
     {

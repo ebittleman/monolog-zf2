@@ -39,7 +39,6 @@ class LoggerManager extends ServiceManager implements ServiceLocatorAwareInterfa
     public function get($name)
     {
         $instance = null;
-        $cName = '';
 
         if (isset($this->canonicalNames[$name])) {
             $cName = $this->canonicalNames[$name];
@@ -61,7 +60,7 @@ class LoggerManager extends ServiceManager implements ServiceLocatorAwareInterfa
 
         if (array_key_exists($cName, $this->loggers)) {
             $instance = $this->buildLogger($cName);
-        }elseif (array_key_exists($cName, $this->handlers)) {
+        } elseif (array_key_exists($cName, $this->handlers)) {
             $instance = $this->buildHandler($cName);
         }
 
@@ -86,23 +85,21 @@ class LoggerManager extends ServiceManager implements ServiceLocatorAwareInterfa
      */
     public function has($name)
     {
-        $cName = '';
         if (isset($this->canonicalNames[$name])) {
             $cName = $this->canonicalNames[$name];
         } else {
             $cName = $this->canonicalizeName($name);
         }
 
-        if (
-            array_key_exists($cName, $this->loggers) ||
-            array_key_exists($cName, $this->handlers)
-        ) {
+        if (array_key_exists($cName, $this->loggers) || array_key_exists($cName, $this->handlers)) {
             return true;
         }
 
         if (parent::has($name)) {
             return true;
         }
+
+        return false;
     }
 
     public function setLogger($name, $loggerOptions)

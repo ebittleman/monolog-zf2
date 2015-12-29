@@ -29,29 +29,30 @@ class MonologOptions implements FactoryInterface
         $this->loggers = isset($options['logs'])? $options['logs'] : array();
     }
 
-    public function getDefaultLogger(){
+    public function getDefaultLogger()
+    {
         return $this->defaultLogger;
     }
 
-    public function setDefaultLogger($defaultLogger){
+    public function setDefaultLogger($defaultLogger)
+    {
         $this->defaultLogger = $defaultLogger;
     }
 
-    public function has($name) {
+    public function has($name)
+    {
         return isset($this->loggers[$name]);
     }
 
-    public function get($name) {
+    public function get($name)
+    {
         if (! $this->has($name)) {
             return null;
         }
 
         $loggerOptions = $this->loggers[$name];
 
-        if (
-            $loggerOptions instanceof MonologLoggerOptions ||
-            is_string($loggerOptions)
-        ) {
+        if ($loggerOptions instanceof MonologLoggerOptions || is_string($loggerOptions)) {
             return $loggerOptions;
         }
 

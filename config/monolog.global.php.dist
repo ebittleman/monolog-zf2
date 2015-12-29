@@ -19,7 +19,7 @@ return array(
                     array(
                         'handlerClass' => 'Monolog\Handler\StreamHandler',
                         'args' => array(
-//                             [PATH TO LOG FILE],
+                            'php://stdout', // PATH TO LOG FILE
                             Logger::DEBUG
                         )
                     ),
@@ -38,7 +38,24 @@ return array(
                         'handlerClass' => 'Monolog\Handler\ErrorLogHandler',
                     )
                 )
-            )
+            ),
+            'Monolog\Console' => array(
+                'handlers' => array(
+                    array(
+                        'handlerClass' => 'Monolog\Handler\StreamHandler',
+                        'args' => array(
+                            'php://stdout',
+                            Logger::DEBUG
+                        ),
+                        'formatter' => array(
+                            'formatterClass' => 'Monolog\Formatter\LineFormatter',
+                            'args' => array(
+                                "%message% %context% %extra% (%level_name%)\n"
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ),
         'handlers' => array(
             'Monolog\DefaultHandler' => array(

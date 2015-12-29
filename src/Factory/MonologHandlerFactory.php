@@ -26,6 +26,18 @@ class MonologHandlerFactory
             throw new \Exception('Invalid Monolog Handler');
         }
 
+        $this->addFormatter($handler, $options);
+
         return $handler;
+    }
+
+    private function addFormatter(HandlerInterface $handler, MonologHandlerOptions $options)
+    {
+        if ($formatterOptions = $options->getFormatter()) {
+            $formatterFactory = new MonologFormatterFactory();
+            $formatter = $formatterFactory->createFormatter($formatterOptions);
+
+            $handler->setFormatter($formatter);
+        }
     }
 }
